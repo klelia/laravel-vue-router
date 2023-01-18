@@ -6,3 +6,6 @@ $fa-font-path: '../webfonts';
 
 @import 'bootstrap/scss/bootstrap';
 
+.router-link-active, .router-link-exact-active, .active {
+    color: #ff0000  !important;
+}

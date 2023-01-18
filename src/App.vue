@@ -1,8 +1,10 @@
 <template>
   <AppHeader></AppHeader>
-  <router-view></router-view>
+  <main class="container">
+    <router-view></router-view>
+  </main>
+  
 </template>
-
 <script>
 import AppHeader from './components/HeaderComponent.vue';
   export default {
