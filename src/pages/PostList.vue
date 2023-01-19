@@ -2,17 +2,8 @@
     <section>
     <h1>Lista dei post</h1>
     <div class="row">
-            <div class="col-12 col-md-4" v-for="(post, index) in posts" :key="index">
-                <div class="card" style="width: 18rem;">
-                    <img :src="`${store.imagBasePath}${post.cover_image}`" class="card-img-top" :alt="post.title">
-                    <div class="card-body">
-                        <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-text">{{ truncateContent(post.content) }}</p>
-                        <router-link class="btn btn-primary" :to="{name: 'single-post', params:{slug: post.slug}}">
-                        Vedi il post
-                        </router-link>                    
-                    </div>
-                </div>
+            <div class="col-12 col-md-4" v-for="(post, index) in posts" :key="post.id">
+                <PostCard :post="post" />
             </div>
     </div>
     <nav aria-label="Page navigation example">
@@ -36,16 +27,19 @@
 <script>
     import axios from 'axios';
     import { store } from '../store';
+    import PostCard from '../components/PostCard.vue';
     export default {
         name: 'PostList',
+        components: {
+            PostCard
+        },
         data(){
             return {
                 store,
                 posts: [],
                 currentPage: 1,
                 lastPage: null,
-                total: 0,
-                contentMaxLen: 100
+                total: 0                
             }
         },
         methods:{
@@ -59,13 +53,7 @@
                    this.lastPage = response.data.results.last_page;
                    this.total = response.data.results.total;
                 })
-            },
-           truncateContent(text){
-            if(text.length > this.contentMaxLen){
-                return text.substr(0,this.contentMaxLen) + '...';
-            }
-            return text;
-           }
+            }           
         },
         mounted(){
             this.getPosts(1);
