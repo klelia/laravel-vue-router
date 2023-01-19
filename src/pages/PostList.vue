@@ -17,8 +17,17 @@
     </div>
     <nav aria-label="Page navigation example">
   <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item" v-for="n in lastPage"><a class="page-link" @click="getPosts(n)">{{n}}</a></li>    
+    <li class="page-item" :class="{'disabled': currentPage === 1}">
+        <button class="page-link" :disabled="currentPage === 1" @click="getPosts(currentPage - 1)">Previous
+        </button>
+    </li>
+    <li class="page-item" v-for="n in lastPage">
+        <button class="page-link" @click="getPosts(n)">{{n}}</button>
+    </li> 
+    <li class="page-item" :class="{'disabled': currentPage === lastPage}">
+        <button class="page-link" :disabled="currentPage === lastPage" @click="getPosts(currentPage + 1)">Next
+        </button>
+    </li>   
   </ul>
 </nav>
     </section>
