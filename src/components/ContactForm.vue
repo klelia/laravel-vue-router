@@ -64,11 +64,11 @@ import {store} from '../store';
                     message: this.message
                 }
                 axios.post(`${this.store.apiBaseUrl}/contacts`, data).then((response)=>{
-                    console.log(response.data);
+                    //console.log(response.data);
                     this.success = response.data.success;
                     if(!this.success){
                         this.errors = response.data.errors;
-                        console.log(this.errors);
+                        //console.log(this.errors);
                     } else {
                         this.name = '';
                         this.email = '';
