@@ -45,10 +45,17 @@
             }
         },
         mounted(){
+        //     this.$watch(() => this.$route.params, (toParams, previousParams) => {
+        //  if(toParams !== previousParams){
             this.getPost();
+        //      }
+        //   }
+        // )
+  },
+            
         }
         
-    }
+
 </script>
 
 <style lang="scss" scoped>
